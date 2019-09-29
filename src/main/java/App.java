@@ -6,13 +6,9 @@ import models.News;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
-import spark.ModelAndView;
-import spark.template.handlebars.HandlebarsTemplateEngine;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import static spark.Spark.*;
 
 public class App {
@@ -33,9 +29,8 @@ public class App {
         Connection con;
         Gson gson = new Gson();
 
-        String connectionString = "jdbc:postgresql://localhost:5432/jadle"; //connect to jadle, not jadle_test!
-        Sql2o sql2o = new Sql2o(connectionString, "karambizi", "12345");  //Ubuntu Sql2o sql2o = new Sql2o(connectionString, "user", "1234");
-
+        String connectionString = "jdbc:postgresql://localhost:5432/organisationapi";
+        Sql2o sql2o = new Sql2o(connectionString, "karambizi", "12345");
         departementsDao = new Sql2oDepartementsDao(sql2o);
         newsDao = new Sql2oNewsDao(sql2o);
         userDao = new Sql2oUserDao(sql2o);
@@ -44,9 +39,9 @@ public class App {
         post("/departement/:dept_Id/user/:id", "application/json", (req, res) -> {
 
             int dept_Id = Integer.parseInt(req.params("dept_Id"));
-            int id = Integer.parseInt(req.params("id"));
+            int user_Id = Integer.parseInt(req.params("id"));
             Departements departements = departementsDao.findById(dept_Id);
-            User user = UserDAo.findById( id);
+            User user = userDao.findById( user_Id);
 
 
             if (departements!= null && user != null){
@@ -111,12 +106,12 @@ public class App {
             return gson.toJson(allNews);
         });
         get("/news", "application/json", (req, res) -> {
-            return gson.toJson(NewsDao.all());
+            return gson.toJson(newsDao.all());
         });
 
         post("/News/new", "application/json", (req, res) -> {
             News news = gson.fromJson(req.body(), News.class);
-            NewsDao.add(news);
+            newsDao.add(news);
             res.status(201);
             return gson.toJson(news);
         });

@@ -5,7 +5,7 @@ import models.User;
 
 import java.util.List;
 
-public interface UserDAo {
+public interface UserDao {
     void add (User user);
     void addUserDepartement(User user, Departements  departements);
     List<User>all();
@@ -14,5 +14,5 @@ public interface UserDAo {
     void deleteById(int id);
     void clearAll();
 
-    User findById(int id);
+    User findById(int user_id);
 }
