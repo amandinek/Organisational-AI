@@ -3,6 +3,7 @@ package dao;
 import models.News;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import org.sql2o.Sql2oException;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class Sql2oNewsDao implements NewsDao {
     }
     @Override
     public void add(News news) {
-        String data ="INSERT INTO news(title,body,dId) VALUES(:title,:body,:dId)";
+        String data ="INSERT INTO news(title,body,dept_Id) VALUES(:title,:body,:dept_Id)";
         try(Connection con =sql2o.open()){
             int id=(int) con.createQuery(data,true)
                     .bind(news)
@@ -34,10 +35,10 @@ public class Sql2oNewsDao implements NewsDao {
     }
 
     @Override
-    public List<News> allNewsOfDepartements(int dId) {
+    public List<News> allNewsOfDepartements(int dept_Id) {
         try(Connection con= sql2o.open()){
             return con.createQuery("SELECT * FROM news WHERE dept_Id=:dept_Id")
-                    .addParameter(dept_Id,dept_Id);
+                    .addParameter("dept_Id",dept_Id)
                     .executeAndFetch(News.class);
         }
     }
@@ -47,7 +48,7 @@ public class Sql2oNewsDao implements NewsDao {
         String data ="DELETE FROM WHERE id=:id";
         try(Connection con =sql2o.open()){
              con.createQuery(data)
-                     .addParameter(id;id)
+                     .addParameter("id", id)
                      .executeUpdate()
                      .getKey();
         }catch (Sql2oException ex){
