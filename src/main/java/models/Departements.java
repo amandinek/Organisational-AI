@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Departements {
     private String dept_name;
     private String dept_descriptions;
-    private String size;
+    private String dept_size;
     private int id;
 
-    public Departements(String dept_name, String dept_descriptions, String size) {
+    public Departements(String dept_name, String dept_descriptions, String dept_size) {
         this.dept_name = dept_name;
         this.dept_descriptions = dept_descriptions;
-        this.size = size;
+        this.dept_size = dept_size;
     }
 
     public String getDept_name() {
@@ -30,12 +30,12 @@ public class Departements {
         this.dept_descriptions = dept_descriptions;
     }
 
-    public String getSize() {
-        return size;
+    public String getDept_size() {
+        return dept_size;
     }
 
-    public void setSize(String size) {
-        this.size = size;
+    public void setDept_size(String dept_size) {
+        this.dept_size = dept_size;
     }
 
     public int getId() {
@@ -54,11 +54,11 @@ public class Departements {
         return id == that.id &&
                 Objects.equals(dept_name, that.dept_name) &&
                 Objects.equals(dept_descriptions, that.dept_descriptions) &&
-                Objects.equals(size, that.size);
+                Objects.equals(dept_size, that.dept_size);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dept_name, dept_descriptions, size, id);
+        return Objects.hash(dept_name, dept_descriptions, dept_size, id);
     }
 }
