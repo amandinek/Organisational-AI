@@ -6,12 +6,12 @@ public class News {
     private String title;
     private String body;
     private int id;
-    private int dId;
+    private int dept_Id;
 
-    public News(String title, String body, int dId) {
+    public News(String title, String body, int dept_Id) {
         this.title = title;
         this.body = body;
-        this.dId = dId;
+        this.dept_Id = dept_Id;
     }
 
     public String getTitle() {
@@ -38,12 +38,12 @@ public class News {
         this.id = id;
     }
 
-    public int getdId() {
-        return dId;
+    public int getdept_Id() {
+        return dept_Id;
     }
 
-    public void setdId(int dId) {
-        this.dId = dId;
+    public void setdept_Id(int dept_Id) {
+        this.dept_Id = dept_Id;
     }
 
     @Override
@@ -52,13 +52,13 @@ public class News {
         if (o == null || getClass() != o.getClass()) return false;
         News news = (News) o;
         return id == news.id &&
-                dId == news.dId &&
+                dept_Id == news.dept_Id &&
                 Objects.equals(title, news.title) &&
                 Objects.equals(body, news.body);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, body, id, dId);
+        return Objects.hash(title, body, id, dept_Id);
     }
 }
