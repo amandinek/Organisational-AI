@@ -14,5 +14,5 @@ public interface UserDAo {
     void deleteById(int id);
     void clearAll();
 
-    User findById(int user_id);
+    User findById(int id);
 }
