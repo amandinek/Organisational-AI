@@ -6,6 +6,8 @@ import models.News;
 import models.User;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +23,11 @@ public class App {
     }
     public static void main(String[] args) {
 
-//        port(getHerokuAssignedPort());
+        port(getHerokuAssignedPort());
         staticFileLocation("/public");
+
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         Sql2oNewsDao newsDao;
         Sql2oDepartementsDao departementsDao;
         Sql2oUserDao userDao;
@@ -36,13 +41,70 @@ public class App {
         userDao = new Sql2oUserDao(sql2o);
         con = sql2o.open();
 
+ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        get("/", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "index.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/department/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+            return new ModelAndView(model, "departement-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/animal/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            String dept_name = request.queryParams("dept_name");
+            String dept_descriptions = request.queryParams("dept_descriptions");
+            int dept_size =Integer.parseInt(request.queryParams("dept_size"));
+            Departements departements = new Departements(dept_name,dept_descriptions, dept_size);
+            departementsDao.add(departements);
+            model.put("departments",departementsDao.all());
+            return new ModelAndView(model, "departement.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        get("/new/user",(request, response) -> {
+            Map<String,Object> model = new HashMap<>();
+            return new ModelAndView(model,"user-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        post("/new/employees", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String user_name = req.queryParams("user_name");
+            String user_position = req.queryParams("user_position");
+            String user_role = req.queryParams("user_role");
+            User users = new User( user_name,user_position, user_role);
+            userDao.add(users);
+            model.put("employees",userDao.all());
+            return new ModelAndView(model,"user.hbs");
+        },new HandlebarsTemplateEngine());
+
+        get("/new/news",(request, response) -> {
+            Map<String,Object> model = new HashMap<>();
+            model.put("news", newsDao.all());
+            return new ModelAndView(model,"news-form.hbs");
+        },new HandlebarsTemplateEngine());
+
+        post("/new/news", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            String title = req.queryParams("title");
+            String body = req.queryParams("body");
+            int dept_Id = Integer.parseInt(req.queryParams("dept_Id"));
+            News news = new News(title,body, dept_Id);
+            newsDao.add(news);
+            model.put("news",newsDao.all());
+            return new ModelAndView(model,"news.hbs");
+        },new HandlebarsTemplateEngine());
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
         post("/departement/:dept_Id/user/:id", "application/json", (req, res) -> {
 
             int dept_Id = Integer.parseInt(req.params("dept_Id"));
             int user_Id = Integer.parseInt(req.params("id"));
             Departements departements = departementsDao.findById(dept_Id);
             User user = userDao.findById( user_Id);
-
 
             if (departements!= null && user != null){
                 //both exist and can be associated
@@ -116,8 +178,6 @@ public class App {
             return gson.toJson(news);
         });
 
-
-
         get("/users", "application/json", (req, res) -> {
             return gson.toJson(userDao.all());
         });
@@ -128,7 +188,6 @@ public class App {
             res.status(201);
             return gson.toJson(user);
         });
-
 
         exception(ApiException.class, (exception, req, res) -> {
             ApiException err = exception;
@@ -144,15 +203,6 @@ public class App {
             res.type("application/json");
         });
     }
-
-
-
-
-//        get("/welcome", (request, response) -> {
-//            Map<String, Object> model = new HashMap<String, Object>();
-//
-//            return new ModelAndView(model, "index.hbs");
-//        }, new HandlebarsTemplateEngine());
 
     }
 

@@ -5,10 +5,10 @@ import java.util.Objects;
 public class Departements {
     private String dept_name;
     private String dept_descriptions;
-    private String dept_size;
+    private int dept_size;
     private int id;
 
-    public Departements(String dept_name, String dept_descriptions, String dept_size) {
+    public Departements(String dept_name, String dept_descriptions, int dept_size) {
         this.dept_name = dept_name;
         this.dept_descriptions = dept_descriptions;
         this.dept_size = dept_size;
@@ -30,11 +30,11 @@ public class Departements {
         this.dept_descriptions = dept_descriptions;
     }
 
-    public String getDept_size() {
+    public int getDept_size() {
         return dept_size;
     }
 
-    public void setDept_size(String dept_size) {
+    public void setDept_size(int dept_size) {
         this.dept_size = dept_size;
     }
 

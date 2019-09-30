@@ -1,18 +1,17 @@
-SET MODE PostgreSQL;
-CREATE DATABASE organisationAPI;
+CREATE DATABASE organisationapi;
 \c
 CREATE TABLE IF NOT EXISTS departements (
  id int PRIMARY KEY auto_increment,
  dept_name VARCHAR,
  dept_description VARCHAR,
- dept_size VARCHAR
+ dept_size INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS news (
  id int PRIMARY KEY auto_increment,
 title VARCHAR
  body VARCHAR
- dept_Id int PRIMARY KEY auto_increment
+ dept_Id INTEGER
 );
 
 CREATE TABLE IF NOT EXISTS users (
@@ -26,7 +25,6 @@ CREATE TABLE IF NOT EXISTS user_in_departements (
 userId INTEGER,
 departementsId INTEGER,
 );
- CREATE DATABASE organisationAPI_Test WITH TEMPLATE organisationAPI;
-
-
+ CREATE DATABASE organisationapi_Test WITH TEMPLATE organisationapi
+;
 
