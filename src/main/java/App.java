@@ -48,12 +48,12 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/department/new", (request, response) -> {
+        get("/departments/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-            return new ModelAndView(model, "departement-form.hbs");
+            return new ModelAndView(model, "department-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/animal/new", (request, response) -> {
+        post("/departments/new", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             String dept_name = request.queryParams("dept_name");
             String dept_descriptions = request.queryParams("dept_descriptions");
@@ -69,24 +69,24 @@ public class App {
             return new ModelAndView(model,"user-form.hbs");
         },new HandlebarsTemplateEngine());
 
-        post("/new/employees", (req, res) -> {
+        post("/new/user", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String user_name = req.queryParams("user_name");
             String user_position = req.queryParams("user_position");
             String user_role = req.queryParams("user_role");
             User users = new User( user_name,user_position, user_role);
             userDao.add(users);
-            model.put("employees",userDao.all());
+            model.put("users",userDao.all());
             return new ModelAndView(model,"user.hbs");
         },new HandlebarsTemplateEngine());
 
-        get("/new/news",(request, response) -> {
+        get("/news/new",(request, response) -> {
             Map<String,Object> model = new HashMap<>();
             model.put("news", newsDao.all());
             return new ModelAndView(model,"news-form.hbs");
         },new HandlebarsTemplateEngine());
 
-        post("/new/news", (req, res) -> {
+        post("/news/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String title = req.queryParams("title");
             String body = req.queryParams("body");
@@ -189,19 +189,19 @@ public class App {
             return gson.toJson(user);
         });
 
-        exception(ApiException.class, (exception, req, res) -> {
-            ApiException err = exception;
-            Map<String, Object> jsonMap = new HashMap<>();
-            jsonMap.put("status", err.getStatusCode());
-            jsonMap.put("errorMessage", err.getMessage());
-            res.type("application/json");
-            res.status(err.getStatusCode());
-            res.body(gson.toJson(jsonMap));
-        });
-
-        after((req, res) ->{
-            res.type("application/json");
-        });
+//        exception(ApiException.class, (exception, req, res) -> {
+//            ApiException err = exception;
+//            Map<String, Object> jsonMap = new HashMap<>();
+//            jsonMap.put("status", err.getStatusCode());
+//            jsonMap.put("errorMessage", err.getMessage());
+//            res.type("application/json");
+//            res.status(err.getStatusCode());
+//            res.body(gson.toJson(jsonMap));
+//        });
+//
+//        after((req, res) ->{
+//            res.type("application/json");
+//        });
     }
 
     }

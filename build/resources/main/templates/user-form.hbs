@@ -1,0 +1,28 @@
+{{#partial "content"}}
+
+    <body>
+    <div class=" container-fluid">
+        <div class="row">
+            <div class="col-sm-4" id="center">
+                <form action="/user/new" method="POST" name="test">
+                    <div class="form-group">
+                        <label for="nameOfUser"> Employee name </label><br>
+                        <input id="nameOfUser" name="user_name" placeholder="Employee Name" type="text" tabindex="1" required autofocus class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="Position">Position</label><br>
+                        <input id="Position" name="user_position" placeholder="Position" type="text" tabindex="1" required autofocus class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role </label><br>
+                        <input id="Position" name="user_role" placeholder="Position" type="text" tabindex="1" required autofocus class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">Add employee</button>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+    </body>
+{{/partial }}
+{{> layout.hbs}}

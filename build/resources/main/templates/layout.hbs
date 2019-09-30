@@ -8,13 +8,28 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{{#block "title"}}organizationAPI{{/block}}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/styles.css">
+        <link rel="stylesheet" href="/style.css">
 
     </head>
 {{/block}}
-<body>
-<div class="container-fluid">
 
+<div class="container-fluid">
+    <header>
+        <nav>
+    <div class="row">
+        <div class="col-sm-4">
+            <nav style="text-align:center"><a href="/departments/new">Departments</a></nav>
+        </div>
+        <div class="col-sm-4">
+            <nav style="text-align:center"><a href="/new/user">Employees</a></nav>
+        </div>
+        <div class="col-sm-4">
+            <nav style="text-align:center"><a href="/news/new">News</a></nav>
+        </div>
+    </div>
+        </nav>
+    </header>
+    <body>
     <!--    <div class="page">-->
     <div class="page-header">
         <h1>welcome to KAG news</h1>
@@ -22,9 +37,10 @@
     {{#block "content"}}
     {{/block}}
 
-</div>
+
 {{#block "footer"}}
     <!--    </div>-->
     </body>
+    </div>
     </html>
 {{/block}}
