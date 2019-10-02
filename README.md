@@ -28,11 +28,12 @@ KARAMBIZI Amandine Gloria
    
    + CREATE DATABASE organisationapi;
    + \c organisationapi;
-   + CREATE TABLE departements (id serial PRIMARY KEY, name varchar);
-   + CREATE TABLE users (id serial PRIMARY KEY, name varchar, health varchar, age varchar);
-   + CREATE TABLE news (id serial PRIMARY KEY, location varchar, ranger_name varchar,date date);
-   + CREATE TABLE IF NOT EXISTS user_in_departements (id serial PRIMARY KEY ,userId INTEGER,departementsId INTEGER
-                                                                                                            );
+   + CREATE TABLE departements (id serial PRIMARY KEY, dept_name VARCHAR, dept_description VARCHAR, dept_size INTEGER);
+   + CREATE TABLE users (id serial PRIMARY KEY, title VARCHAR body VARCHAR dept_Id INTEGER);
+   + CREATE TABLE news (id serial PRIMARY KEY, user_name VARCHAR,user_position VARCHAR, user_role VARCHAR);
+   + CREATE TABLE IF NOT EXISTS user_in_departements (id serial PRIMARY KEY ,userId INTEGER,departementsId INTEGER); 
+   + CREATE DATABASE organisationapi_Test WITH TEMPLATE organisationapi;
+
  ### Picture of Application 
      
 
