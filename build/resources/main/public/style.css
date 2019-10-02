@@ -1,5 +1,5 @@
 body{
-background-image:url("/images/back 1.jpg");
+background-image:url("https://images.wallpaperscraft.com/image/company_brand_marshall_font_net_3882_1280x720.jpg");
 background-size:cover;
 color:white;
 }
@@ -16,7 +16,8 @@ color:white;
 #para{
 text-align:center;
 font-size:23px;
-padding-top:120px;
+padding-top:210px;
+color:white;
 }
 label{
 color:white;
