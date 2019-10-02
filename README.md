@@ -33,7 +33,10 @@ KARAMBIZI Amandine Gloria
    + CREATE TABLE news (id serial PRIMARY KEY, location varchar, ranger_name varchar,date date);
    + CREATE TABLE IF NOT EXISTS user_in_departements (id serial PRIMARY KEY ,userId INTEGER,departementsId INTEGER
                                                                                                             );
-      
+ ### Picture of Application 
+     
+
+   <img src= "screenshot/app.png">   
      
      
     
