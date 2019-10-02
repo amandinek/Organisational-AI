@@ -4,9 +4,10 @@
         <div class="row">
                 <h4><a href="/">Home</a></h4>
                 <h1>Department details</h1>
+                    <pre>  name      description       number</pre>
                 {{#if foundDept}}
                     {{#each foundDept}}
-                    <pre> {{dept_name}}       {{dept_description}}       {{dept_size}}    <button><a href="/">delete</a></button></pre>
+                    <pre> {{dept_name}}       {{dept_description}}       {{dept_size}}    <button ><a href="/">delete</a></button></pre>
 
 
                         {{/each }}
