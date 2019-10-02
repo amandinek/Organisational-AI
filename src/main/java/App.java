@@ -66,17 +66,7 @@ public class App {
             model.put("dept_size",dept_size);
             return new ModelAndView(model, "departement.hbs");
         }, new HandlebarsTemplateEngine());
-        //////////////////////////////////////////////////////////////////////
-//        get("/department/:id", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfHeroToFind = Integer.parseInt(req.params(":id"));
-//            Departements foundDept = departementsDao.findById(idOfHeroToFind);
-//            model.put("id", foundDept.getId());
-//            model.put("foundDept", foundDept);
-
-//            return new ModelAndView(model, "departement.hbs");
-//        }, new HandlebarsTemplateEngine());
-////////////////////////////////////////////////////////////////////////////////////////////////////
+  
 
         get("/user/new",(request, response) -> {
             Map<String,Object> model = new HashMap<>();
@@ -105,15 +95,7 @@ public class App {
             model.put("users", foundUser);
             return new ModelAndView(model, "user.hbs");
         }, new HandlebarsTemplateEngine());
-        //////////////////////////////////////////
-//        get("/user/new", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-////            model.put("generalNews",newsDao.all());
-//            List<User> gg= userDao.all();
-//            model.put("gg",gg);
-//            return new ModelAndView(model, "user.hbs");
-//        }, new HandlebarsTemplateEngine());
-        ////////////////////////////////////////
+     
  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         get("/news/new",(request, response) -> {
@@ -136,23 +118,13 @@ public class App {
             return new ModelAndView(model,"news.hbs");
         },new HandlebarsTemplateEngine());
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        get("/news/new/:id", (req, res) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            int idOfuserToFind = Integer.parseInt(req.params(":id"));
-//            News foundUser = newsDao.findById(idOfuserToFind);
-//            model.put("id", foundUser.getId());
-//            model.put("news", foundUser);
-//            return new ModelAndView(model, "news.hbs");
-//        }, new HandlebarsTemplateEngine());
 
         get("/news/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
-//            model.put("generalNews",newsDao.all());
             List<News> gg= newsDao.all();
             model.put("gg",gg);
             return new ModelAndView(model, "news.hbs");
         }, new HandlebarsTemplateEngine());
-//        System.out.println(newsDao.all());
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -245,20 +217,6 @@ public class App {
             res.status(201);
             return gson.toJson(user);
         });
-
-//        exception(ApiException.class, (exception, req, res) -> {
-//            ApiException err = exception;
-//            Map<String, Object> jsonMap = new HashMap<>();
-//            jsonMap.put("status", err.getStatusCode());
-//            jsonMap.put("errorMessage", err.getMessage());
-//            res.type("application/json");
-//            res.status(err.getStatusCode());
-//            res.body(gson.toJson(jsonMap));
-//        });
-//
-//        after((req, res) ->{
-//            res.type("application/json");
-//        });
     }
 
     }
