@@ -30,9 +30,11 @@ public class Sql2oNewsDao implements NewsDao {
     public List<News> all() {
        try(Connection con= sql2o.open()){
            return con.createQuery("SELECT * FROM news")
+                   .throwOnMappingFailure(false)
                    .executeAndFetch(News.class);
        }
     }
+
 
     @Override
     public List<News> allNewsOfDepartements(int dept_Id) {
@@ -59,6 +61,15 @@ public class Sql2oNewsDao implements NewsDao {
 
     @Override
     public void clearAll() {
+
+    }
+    @Override
+    public News findById(int user_Id) {
+        try(Connection con =sql2o.open()){
+            return con.createQuery("SELECT * FROM news WHERE id=:id")
+                    .addParameter("id",user_Id)
+                    .executeAndFetchFirst(News.class);
+        }
 
     }
 }

@@ -1,0 +1,21 @@
+{{#partial "content"}}
+    <body>
+    <div class=" container-fluid">
+        <div class="row">
+                <h4><a href="/">Home</a></h4>
+                <h1>Department details</h1>
+                {{#if foundDept}}
+                    {{#each foundDept}}
+                    <pre> {{dept_name}}       {{dept_description}}       {{dept_size}} </pre>
+
+
+                        {{/each }}
+             {{else}}
+                    <p>No departments, please visit the <a href="/">home page</a>.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    </body>
+{{/partial}}
+{{> layout.hbs}}

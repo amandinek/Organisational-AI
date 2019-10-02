@@ -1,0 +1,11 @@
+{{#partial "content"}}
+
+{{#if allUsers}}
+    {{#each allUsers}}
+    <pre>{{user_name}}    {{user_position}}  {{user_role}}</pre>
+{{/each}}
+{{else}}
+    <p>No user, please visit the <a href="/">home page</a>.</p>
+{{/if}}
+{{/partial}}
+{{> layout.hbs}}

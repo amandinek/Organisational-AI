@@ -4,13 +4,13 @@ import java.util.Objects;
 
 public class Departements {
     private String dept_name;
-    private String dept_descriptions;
+    private String dept_description;
     private int dept_size;
     private int id;
 
-    public Departements(String dept_name, String dept_descriptions, int dept_size) {
+    public Departements(String dept_name, String dept_description, int dept_size) {
         this.dept_name = dept_name;
-        this.dept_descriptions = dept_descriptions;
+        this.dept_description = dept_description;
         this.dept_size = dept_size;
     }
 
@@ -22,12 +22,12 @@ public class Departements {
         this.dept_name = dept_name;
     }
 
-    public String getDept_descriptions() {
-        return dept_descriptions;
+    public String getDept_description() {
+        return dept_description;
     }
 
-    public void setDept_descriptions(String dept_descriptions) {
-        this.dept_descriptions = dept_descriptions;
+    public void setDept_description(String dept_descriptions) {
+        this.dept_description = dept_descriptions;
     }
 
     public int getDept_size() {
@@ -53,12 +53,12 @@ public class Departements {
         Departements that = (Departements) o;
         return id == that.id &&
                 Objects.equals(dept_name, that.dept_name) &&
-                Objects.equals(dept_descriptions, that.dept_descriptions) &&
+                Objects.equals(dept_description, that.dept_description) &&
                 Objects.equals(dept_size, that.dept_size);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(dept_name, dept_descriptions, dept_size, id);
+        return Objects.hash(dept_name, dept_description, dept_size, id);
     }
 }

@@ -48,37 +48,73 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/departments/new", (request, response) -> {
+        get("/department/new", (request, response) -> {
             Map<String, Object> model = new HashMap<>();
             return new ModelAndView(model, "department-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        post("/departments/new", (request, response) -> {
+        post("/department/new", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             String dept_name = request.queryParams("dept_name");
-            String dept_descriptions = request.queryParams("dept_descriptions");
+            String dept_description = request.queryParams("dept_description");
             int dept_size =Integer.parseInt(request.queryParams("dept_size"));
-            Departements departements = new Departements(dept_name,dept_descriptions, dept_size);
+            Departements departements = new Departements(dept_name,dept_description, dept_size);
             departementsDao.add(departements);
-            model.put("departments",departementsDao.all());
+            model.put("foundDept",departementsDao.all());
+            model.put("dept_name",dept_name);
+            model.put("dept_description",dept_description);
+            model.put("dept_size",dept_size);
             return new ModelAndView(model, "departement.hbs");
         }, new HandlebarsTemplateEngine());
+        //////////////////////////////////////////////////////////////////////
+//        get("/department/:id", (req, res) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            int idOfHeroToFind = Integer.parseInt(req.params(":id"));
+//            Departements foundDept = departementsDao.findById(idOfHeroToFind);
+//            model.put("id", foundDept.getId());
+//            model.put("foundDept", foundDept);
 
-        get("/new/user",(request, response) -> {
+//            return new ModelAndView(model, "departement.hbs");
+//        }, new HandlebarsTemplateEngine());
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        get("/user/new",(request, response) -> {
             Map<String,Object> model = new HashMap<>();
             return new ModelAndView(model,"user-form.hbs");
         },new HandlebarsTemplateEngine());
 
-        post("/new/user", (req, res) -> {
+        post("/user/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             String user_name = req.queryParams("user_name");
             String user_position = req.queryParams("user_position");
             String user_role = req.queryParams("user_role");
             User users = new User( user_name,user_position, user_role);
             userDao.add(users);
-            model.put("users",userDao.all());
-            return new ModelAndView(model,"user.hbs");
+            model.put("allUsers",userDao.all());
+            model.put("user_name",user_name);
+            model.put("user_position",user_position);
+            model.put("user_role",user_role);
+            return new ModelAndView(model,"all-users.hbs");
         },new HandlebarsTemplateEngine());
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        get("/user/new/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfuserToFind = Integer.parseInt(req.params(":id"));
+            User foundUser = userDao.findById(idOfuserToFind);
+            model.put("id", foundUser.getId());
+            model.put("users", foundUser);
+            return new ModelAndView(model, "user.hbs");
+        }, new HandlebarsTemplateEngine());
+        //////////////////////////////////////////
+//        get("/user/new", (request, response) -> {
+//            Map<String, Object> model = new HashMap<>();
+////            model.put("generalNews",newsDao.all());
+//            List<User> gg= userDao.all();
+//            model.put("gg",gg);
+//            return new ModelAndView(model, "user.hbs");
+//        }, new HandlebarsTemplateEngine());
+        ////////////////////////////////////////
+ /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         get("/news/new",(request, response) -> {
             Map<String,Object> model = new HashMap<>();
@@ -94,9 +130,30 @@ public class App {
             News news = new News(title,body, dept_Id);
             newsDao.add(news);
             model.put("news",newsDao.all());
+            model.put("title",title);
+            model.put("body",body);
+            model.put("dept_Id",dept_Id);
             return new ModelAndView(model,"news.hbs");
         },new HandlebarsTemplateEngine());
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//        get("/news/new/:id", (req, res) -> {
+//            Map<String, Object> model = new HashMap<>();
+//            int idOfuserToFind = Integer.parseInt(req.params(":id"));
+//            News foundUser = newsDao.findById(idOfuserToFind);
+//            model.put("id", foundUser.getId());
+//            model.put("news", foundUser);
+//            return new ModelAndView(model, "news.hbs");
+//        }, new HandlebarsTemplateEngine());
 
+        get("/news/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+//            model.put("generalNews",newsDao.all());
+            List<News> gg= newsDao.all();
+            model.put("gg",gg);
+            return new ModelAndView(model, "news.hbs");
+        }, new HandlebarsTemplateEngine());
+//        System.out.println(newsDao.all());
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         post("/departement/:dept_Id/user/:id", "application/json", (req, res) -> {

@@ -10,4 +10,6 @@ public interface NewsDao {
     List<News> allNewsOfDepartements(int dept_Id);
     void deleteById(int id);
     void clearAll();
+
+   News findById(int id);
 }

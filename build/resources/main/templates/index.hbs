@@ -1,10 +1,10 @@
 {{#partial "content"}}
     <div class="row">
         <div class="col-sm-4">
-            <nav style="text-align:center"><a href="/departments/new">Departments</a></nav>
+            <nav style="text-align:center"><a href="/department/new">Departments</a></nav>
         </div>
         <div class="col-sm-4">
-            <nav style="text-align:center"><a href="/new/user">Employees</a></nav>
+            <nav style="text-align:center"><a href="/user/new">Employees</a></nav>
         </div>
         <div class="col-sm-4">
             <nav style="text-align:center"><a href="/news/new">News</a></nav>
@@ -16,5 +16,18 @@
         The platform that update you <br>
         on whatever going on at your work.
     </p>
+    <div class="row">
+        <div class="col-sm-4" id="center">
+            <h4><a href="/">Home</a></h4>
+            <h1>news details</h1>
+            {{#if news}}
+                <h5> news title:{{news.title}}</h5>
+                <h5>body: {{news.body}}</h5>
+                <h5>dept id :{{news.dept_Id}}</h5>
+            {{else}}
+                <p>no news, please visit the <a href="/">home page</a>.</p>
+            {{/if}}
+        </div>
+    </div>
 {{/partial}}
 {{> layout.hbs}}
